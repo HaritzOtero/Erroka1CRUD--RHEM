@@ -1,0 +1,122 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    overflow: hidden;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #74ebd5;
+    outline: none;
+    box-shadow: 0 0 5px rgba(116, 235, 213, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #74ebd5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #acb6e5;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+    animation: shake 0.3s ease;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #333;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+}
