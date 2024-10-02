@@ -51,7 +51,7 @@ input[type="email"]:focus, input[type="password"]:focus {
 button {
     width: 100%;
     padding: 0.75rem;
-    background-color: #74ebd5;
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 5px;

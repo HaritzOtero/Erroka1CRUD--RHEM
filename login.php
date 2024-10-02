@@ -25,6 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($pasahitza, $row['pasahitza'])) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_type'] = $row['mota']; // Por ejemplo, 'admin' o 'user'
+            $_SESSION['user_name'] = $row['izena']; // Aquí almacenas el nombre
+            $_SESSION['user_lastname'] = $row['abizena']; // Aquí almacenas el apellido
             header("Location: dashboard.php");
             exit;
         } else {
