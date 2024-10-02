@@ -53,28 +53,7 @@ $kurtsoak = $kurtso->getAll();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Iconos de redes sociales -->
 </head>
 <body>
-    <!-- Navegación -->
-    <nav>
-        <div class="nav-left">
-            <h1><a href="index.php">Uni RHEM</a></h1>
-        </div>
-        <div class="nav-right">
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <div class="dropdown">
-                    <a href="#" class="user"><?php echo htmlspecialchars($currentUserName); ?></a>
-                    <div class="dropdown-content">
-                        <a href="logout.php">Logout</a>
-                    </div>
-                </div>
-            <?php else: ?>
-                <a href="login.php">Login</a>
-                <a href="register.php">Erregistratu</a>
-            <?php endif; ?>
-        </div>
-    </nav>
 <div class="bodyContent">
-    
-
     <div class="dashboard-container">
         <h2>Kaixo, <?php echo htmlspecialchars($currentUserName); ?></h2>
         <?php if ($user_type === 'admin'): ?>
@@ -131,7 +110,7 @@ $kurtsoak = $kurtso->getAll();
                 </tbody>
             </table>
             <a href="kurtsoaGehitu.php">Añadir Curso</a>
-
+            <a class="logout" href="logout.php">Logout</a>
         <?php else: ?>
             <h3>Cursos Disponibles</h3>
             <table>
@@ -159,15 +138,5 @@ $kurtsoak = $kurtso->getAll();
 
     
 </div>
-<!-- Footer -->
-<footer>
-        <div class="social-media">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <p>&copy; 2024 Uni Rhem. Todos los derechos reservados.</p>
-    </footer>
 </body>
 </html>

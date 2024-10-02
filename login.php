@@ -45,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
     <div class="login-container">
@@ -54,13 +56,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
         <form method="POST" action="">
             <input type="email" name="email" required placeholder="Email">
-            <input type="password" type="password" name="pasahitza" required placeholder="Pasahitza">
+            <input type="password" name="pasahitza" required placeholder="Pasahitza">
             <button type="submit">Hasi saioa</button>
             <a href="register.php">Konturik ez? Erregistratu.</a>
         </form>
+        <br>
+        <!-- Ícono de casa que lleva a index.php -->
+        <a href="index.php" class="home-icon">
+            <i class="fas fa-home"></i>
+        </a>
     </div>
-    <br>
-    
 </body>
 
 </html>

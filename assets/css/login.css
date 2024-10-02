@@ -51,7 +51,7 @@ input[type="email"]:focus, input[type="password"]:focus {
 button {
     width: 100%;
     padding: 0.75rem;
-    background-color: #333;
+    background-color: #74ebd5;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -119,4 +119,15 @@ a:hover {
     75% {
         transform: translateX(-5px);
     }
+}
+.home-icon {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #333;
+}
+
+.home-icon i {
+    margin-right: 0.5rem;
 }

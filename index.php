@@ -51,7 +51,7 @@ if ($loggedIn) {
             <?php } ?>
         </div>
         <div class="image">
-            <img src="assets/img/indexImg.jpg" alt="Imagen de Uni Rhem">
+            <img src="assets/img/indexImg.webp" alt="Imagen de Uni Rhem">
         </div>
     </main>
 
