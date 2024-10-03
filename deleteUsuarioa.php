@@ -18,6 +18,6 @@ if ($usuario->deleteById($id)) {
     header("Location: dashboard.php");
     exit;
 } else {
-    echo "Error al eliminar el usuario.";
+    echo "Errorea erabiltzailea ezabatzerakoan.";
 }
 ?>

@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="assets/css/updateU.css"></head>
 <body>
     <div class="form-container">
-        <h2>Actualizar Usuario</h2>
+        <h2>Erabiltzaile eguneraketa</h2>
         <?php if (isset($error)): ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
