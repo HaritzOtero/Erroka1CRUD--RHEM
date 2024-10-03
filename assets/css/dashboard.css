@@ -120,6 +120,23 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: #f1f1f1;
 }
+h3 {
+    cursor: pointer; /* Cambia el cursor para indicar que es clicable */
+}
+
+.collapsible-content {
+    display: none; /* Oculta el contenido por defecto */
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde alrededor del contenido */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 20px; /* Espacio entre secciones */
+}
+
+.collapsible-header {
+    background-color: #f0f0f0; /* Color de fondo para los encabezados */
+    padding: 10px;
+    border-radius: 5px; /* Bordes redondeados para encabezados */
+}
 
 a {
     display: inline-block;

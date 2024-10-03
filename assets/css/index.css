@@ -144,9 +144,7 @@ main {
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-.kurtsoaGehitu{
-    margin-left: 45%;
-}
+
 /* Footer */
 footer {
     margin-top: auto;
@@ -165,7 +163,9 @@ footer .social-media a {
     font-size: 1.5rem;
     transition: color 0.3s ease;
 }
-
+.nav-a{
+    width: 100%;
+}
 footer .social-media a:hover {
     color: #acb6e5;
 }

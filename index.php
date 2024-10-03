@@ -31,7 +31,7 @@ if ($loggedIn) {
                 <i class="fa-solid fa-user"></i>
                     <a href="#" class="user"><?php echo htmlspecialchars($nombreUsuario); ?></a>
                     <div class="dropdown-content">
-                        <a href="logout.php">Logout</a>
+                        <a class = "nav-a" href="logout.php">Logout</a>
                     </div>
                 </div>
             <?php else: ?>
