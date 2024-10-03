@@ -17,6 +17,7 @@ if ($loggedIn) {
     <title>Uni Rhem - Formación Profesional</title>
     <link rel="stylesheet" href="assets/css/index.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Iconos de redes sociales -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"> <!-- Actualiza el enlace de Font Awesome -->
 </head>
 <body>
     <!-- Navegación -->
@@ -27,6 +28,7 @@ if ($loggedIn) {
         <div class="nav-right">
             <?php if ($loggedIn): ?>
                 <div class="dropdown">
+                <i class="fa-solid fa-user"></i>
                     <a href="#" class="user"><?php echo htmlspecialchars($nombreUsuario); ?></a>
                     <div class="dropdown-content">
                         <a href="logout.php">Logout</a>
