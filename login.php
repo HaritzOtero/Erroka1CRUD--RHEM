@@ -1,38 +1,44 @@
 <?php
+// BEHAR DANA INPORTATU
 session_start();
-require 'conexion.php';  // Asegúrate de que el archivo esté en la ruta correcta
-require 'models/Usuario.php'; // Cambia la ruta si es necesario
-
+require 'conexion.php';
+require 'models/Usuario.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //FORMULARIOEN DATUAK ALDAGAIETAN GORDE
     $email = $_POST['email'];
     $pasahitza = $_POST['pasahitza'];
-
+    //KONEXIOA SORTU
     $db = new Conexion();
     $conn = $db->getConnection();
     $usuario = new Usuario($conn);
     
-    // Aquí puedes implementar tu lógica de autenticación.
+    // QUERY-a parametroekin segurtasuna bermatzeko.
     $query = "SELECT * FROM usuarios WHERE email = :email";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':email', $email);
+    //QUERY-A EXEKUTATU
     $stmt->execute();
 
+    //GMAILA EZ BADAGO ERREGISTRATUTA SESIOKO DATUAK GORDE
     if ($stmt->rowCount() > 0) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        // Verifica la contraseña (asegúrate de que la contraseña esté encriptada en la base de datos)
+        // SATRUTAKO PASAHITZA DB-K HASHAREKIN KONPARATU
         if (password_verify($pasahitza, $row['pasahitza'])) {
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['user_type'] = $row['mota']; // Por ejemplo, 'admin' o 'user'
-            $_SESSION['user_name'] = $row['izena']; // Aquí almacenas el nombre
-            $_SESSION['user_lastname'] = $row['abizena']; // Aquí almacenas el apellido
+            //PASAHITZA BERDINA BADA SESIOKIDATUAK GORDE
+            $_SESSION['user_id'] = $row['id'];// HAMEN USUARIO ID
+            $_SESSION['user_type'] = $row['mota']; // HAMEN USUARIO MOTA
+            $_SESSION['user_name'] = $row['izena']; // HAMEN IZENA GORDETZEN DA
+            $_SESSION['user_lastname'] = $row['abizena']; //HAMEN USUARIO ABIZENA GORDETZEN DA BESTE ORRIALDEETAN ERABILTZEKO SESIOA ITXI ARTE
             header("Location: dashboard.php");
             exit;
         } else {
+            //PASAHITZAREN HASHA ETA DATUBASEKOA EZBERDINA BADA ERROREA ERAKUTSI
             $error = "Pasahitz okerra.";
         }
     } else {
+        //GMAILA ERREGISTRATTA BADAGO ERROREA ERAKUTSI
         $error = "Email-a ez dago erregistratuta.";
     }
 }
@@ -49,8 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </head>
 <body>
+    <!-- LOGIN DIVA-A -->
     <div class="login-container">
         <h2>Saioa Hasi</h2>
+        <!-- ERROREEN DIV-A -->
         <?php if (isset($error)): ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
@@ -61,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="register.php">Konturik ez? Erregistratu.</a>
         </form>
         <br>
-        <!-- Ícono de casa que lleva a index.php -->
+        <!-- INDEXERA ERAMATEN DUEN ETXE IKONOA-->
         <a href="index.php" class="home-icon">
             <i class="fas fa-home"></i>
         </a>

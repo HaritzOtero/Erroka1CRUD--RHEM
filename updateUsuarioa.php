@@ -8,13 +8,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin') {
     exit;
 }
 
-$id = $_GET['id']; // Obtén el ID del usuario a actualizar
+$id = $_GET['id']; // ID-A POST-ETIK HARTU GET ERABILIZ
 
 $db = new Conexion();
 $conn = $db->getConnection();
 $usuario = new Usuario($conn);
 
-// Obtener el usuario actual para prellenar el formulario
+//AUKERATUTAKO USUARIOA LORTU
 $current_user = $usuario->getById($id);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,12 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $mota = $_POST['mota'];
 
-    // Actualizar los datos del usuario
+    // USUARIOAREN DATUAK AKTUALIZATU
     $usuario->setIzena($izena);
     $usuario->setAbizena($abizena);
     $usuario->setEmail($email);
     $usuario->setMota($mota);
 
+    //ONDO AKTUALZIATZEN BADA DASHBOARD-A KARGATU ETA BESTELA ERROREA IKUSI
     if ($usuario->updateById($id)) {
         header("Location: dashboard.php");
         exit;
@@ -48,9 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="form-container">
         <h2>Erabiltzaile eguneraketa</h2>
+        <!-- ERROREAK IKUSTEKO DIV-A-->
         <?php if (isset($error)): ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
+        <!-- FRMULARIOA -->
         <form method="POST" action="">
             <input type="text" name="izena" value="<?php echo $current_user['izena']; ?>" required placeholder="Nombre">
             <input type="text" name="abizena" value="<?php echo $current_user['abizena']; ?>" required placeholder="Apellido">

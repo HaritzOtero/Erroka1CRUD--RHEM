@@ -1,4 +1,5 @@
 <?php
+//USUARIO KLASEA
 class Usuario {
     private $conn;
     private $table_name = "usuarios";
@@ -10,6 +11,7 @@ class Usuario {
     public $mota;
     public $pasahitza;
 
+    //FUNTZIOAK BESTE ARTXIBOETAN ERABLTZEKO
     public function __construct($db) {
         $this->conn = $db;
     }
@@ -67,7 +69,7 @@ class Usuario {
     }
     
 
-    // CRUD operations
+//PARAMETROAK ERABILITA SEGURTASUNA BERMATZEKO    
     public function create() {
         $query = "INSERT INTO " . $this->table_name . " SET izena=:izena, abizena=:abizena, email=:email, mota=:mota, pasahitza=:pasahitza";
         $stmt = $this->conn->prepare($query);
@@ -84,6 +86,7 @@ class Usuario {
         return false;
     }
 
+    //IRAKURRI NAHI DEN TAULA
     public function read() {
         $query = "SELECT * FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
@@ -91,6 +94,7 @@ class Usuario {
         return $stmt;
     }
 
+    //ERABILTZAILEA AKTUALIZATU
     public function update() {
         $query = "UPDATE " . $this->table_name . " SET izena=:izena, abizena=:abizena, email=:email, mota=:mota, pasahitza=:pasahitza WHERE id=:id";
         $stmt = $this->conn->prepare($query);
@@ -107,6 +111,7 @@ class Usuario {
         }
         return false;
     }
+    //ERABILTZAILEA BILATU ID-AREKIN
     public function getById($id) {
         $query = "SELECT * FROM usuarios WHERE id = :id";
         $stmt = $this->conn->prepare($query);
@@ -114,7 +119,7 @@ class Usuario {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
+    //ERABILTZAILEA EGUNERATU ID-AREKIN
     public function updateById($id) {
         $query = "UPDATE usuarios SET izena = :izena, abizena = :abizena, email = :email, mota = :mota WHERE id = :id";
         $stmt = $this->conn->prepare($query);
@@ -125,7 +130,7 @@ class Usuario {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
-    
+    //ERABILTZAILEA BORRATU ID-AREKIN
     public function deleteById($id) {
         $query = "DELETE FROM usuarios WHERE id = :id";
         $stmt = $this->conn->prepare($query);

@@ -1,40 +1,42 @@
 <?php
+//SESIOA HASI $_SESSION ALDAGAIAK ERABILI AHAL IZATEKO
 session_start();
 require 'conexion.php';
 
-// Verificar si el usuario está logueado
+// LOGEATUTA EZ BADAGO LOGINEARA BIDALI
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Obtener el ID del usuario y el ID del curso
+// USUARIOAREN ID ETA KURTSO ID-AK HARTU
 $usuario_id = $_SESSION['user_id'];
 $kurtso_id = $_POST['kurtso_id'];
 
-// Conexión a la base de datos
+// DATUBASE KONEXIOA
 $db = new Conexion();
 $conn = $db->getConnection();
 
-// Verificar si el usuario ya está matriculado en otro curso
+// USUARIOA BESTE KURTSOREN BATEAN MATRIKULATUTA BADAGO KONPROBARU
 $query = "SELECT * FROM usuariokurtsoak WHERE usuario_id = :usuario_id";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(':usuario_id', $usuario_id);
 $stmt->execute();
 
 if ($stmt->rowCount() > 0) {
-    // Ya está matriculado en otro curso, muestra un error
+    // MATRIKULATUTA BADAGO ERROREA IKUSI
     echo "<script>alert('Kurtso batean matrikulatuta zaude, bakarrik batean matrikulatu ahal zara urtero, errorea bada eskatu administrariari.'); window.location.href='index.php';</script>";
     exit;
 } else {
-    // Insertar la matrícula en la tabla usuariokurtsoak
+    // EZ BADAGO MATRUKULATUTA QUERYA PRESTATU
     $query = "INSERT INTO usuariokurtsoak (usuario_id, kurtso_id) VALUES (:usuario_id, :kurtso_id)";
+    //PARAMETROAK ERABILITA SEGURTASUNA BERMATZEKO
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':usuario_id', $usuario_id);
     $stmt->bindParam(':kurtso_id', $kurtso_id);
-
+    //QUERY-A EXEKUTATU
     if ($stmt->execute()) {
-        // Mostrar el popup de éxito
+        // QUERYA ERRORE BARIK EXEKUTZATZEN BADA, POPUP BAT RAKUTSI, HAREN HTMLA ETA CSS JAVASCRIPT ERABILIZ.
         echo "<script>
                 document.addEventListener('DOMContentLoaded', function() {
                     let popup = document.createElement('div');
@@ -70,7 +72,7 @@ if ($stmt->rowCount() > 0) {
                 });
               </script>";
     } else {
-        // Error al matricular
+        // ERROREA EMATEN BADU QUERY-A ERROREA AZALDU
         echo "<script>alert('Errorea matrikulatzerakoan.'); window.location.href='index.php';</script>";
     }
 }

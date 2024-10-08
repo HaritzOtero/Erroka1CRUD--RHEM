@@ -1,9 +1,10 @@
 <?php
+//DATUBASE KONEXIOA
 class Conexion {
     private $host = "localhost";
     private $db_name = "erronka1_rhem";
-    private $username = "root"; // Cambia si es necesario
-    private $password = ""; // Cambia si es necesario
+    private $username = "root"; // MYSQL ERABILTZAILEA
+    private $password = ""; //MYSQL PASAHITZA
     public $conn;
 
     public function getConnection() {

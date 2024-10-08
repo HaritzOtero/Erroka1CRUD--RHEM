@@ -20,44 +20,50 @@ if ($loggedIn) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"> <!-- Actualiza el enlace de Font Awesome -->
 </head>
 <body>
-    <!-- Navegación -->
+    <!-- NAV (GOIKO NABIKAZIOA BARRA) -->
     <nav>
         <div class="nav-left">
             <h1><a href="index.php">Uni RHEM</a></h1>
         </div>
         <div class="nav-right">
             <?php if ($loggedIn): ?>
+                <!-- LOGEATUTA BADAGO DROPDOWN-A SORTU LOGOUT BOTOIATREKIN -->
                 <div class="dropdown">
                 <i class="fa-solid fa-user"></i>
+                <!-- USUARIOAREN IZENA REKUTSI -->
                     <a href="#" class="user"><?php echo htmlspecialchars($nombreUsuario); ?></a>
                     <div class="dropdown-content">
                         <a class = "nav-a" href="logout.php">Logout</a>
                     </div>
                 </div>
             <?php else: ?>
+                <!-- LOGEATUTA EZ BADAGO LOGIN ETA REGISTER OPZIOAK ERAKUTSI -->
                 <a href="login.php">Login</a>
                 <a href="register.php">Erregistratu</a>
             <?php endif; ?>
         </div>
     </nav>
 
-    <!-- Contenido principal -->
+    <!-- EDUKI PRINTZIPALA -->
     <main class="main-content">
         <div class="description">
             <h2>Ongi etorri Uni Rhem-era</h2>
             <p>Uni Rhem-en kalitate handiko lanbide-heziketa eskaintzen dugu, ikasleak lan-mundurako prestatzera bideratua. Gure ikastaro sorta zabala zure etorkizun profesionalerako beharrezkoak diren trebetasunak eskaintzeko diseinatuta dago.</p>
+            <!-- LOGEATUTA BADAGOEN SESSION-EN KONPROBATU ETA LOGEATUTA EZ BADAGO LOGINERA BIDALE, BESTELA DASHBOARDERA BIDALI -->
             <?php if (!isset($_SESSION['user_id'])) { ?>
                 <a href="login.php" class="btn">Kurtsoak ikusi</a>
             <?php } else { ?>
                 <a href="dashboard.php" class="btn">Kurtsoak ikusi</a>
             <?php } ?>
         </div>
+        <!-- argazkia -->
         <div class="image">
             <img src="assets/img/indexImg.webp" alt="Imagen de Uni Rhem">
         </div>
     </main>
 
     <!-- Footer -->
+     <!-- FONT AWESOME SARE SOZIALEN IKONOAK -->
     <footer>
         <div class="social-media">
             <a href="#"><i class="fab fa-facebook-f"></i></a>

@@ -1,8 +1,10 @@
 <?php
+//IMPORTATU KLASEA ETA KONEXIOA
 session_start();
 require 'conexion.php';
 require 'models/Kurtsoa.php';
 
+//LOGEATUTA DAGOEN ALA EZ KONPROBATU ETA EZ BADAGO LOGINERA BIDALI, GOBUSTERRAK EBITATZEKO
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin') {
     header("Location: login.php");
     exit;
@@ -11,23 +13,26 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'admin') {
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //BEHAR DEN INFORMAZIOA ALDAGAIETAN GORDE
     $izena = $_POST['izena'];
     $deskripzioa = $_POST['deskripzioa'];
 
-    // Validación básica
+    // BALIDAZIO BASIKOA
     if (empty($izena) || empty($deskripzioa)) {
         $error = "Formulario osoa bete.";
     } else {
         $db = new Conexion();
         $conn = $db->getConnection();
+        //KURTSO OBJETUA SORTU
         $kurtso = new Kurtsoa($conn);
 
-        // Guarda el nuevo curso
+        // KURTSOAREN INFORMAZIOA GORDE OBJETUAN
         $kurtso->setIzena($izena);
         $kurtso->setDeskripzioa($deskripzioa);
 
+        //KURTSOA SORTU ESTA SORTZEN EZ BADA ERROREA IKUSI
         if ($kurtso->create()) {
-            header("Location: dashboard.php"); // Redirigir al dashboard si el registro es exitoso
+            header("Location: dashboard.php"); // DASBOARDA KARGATU KURTSOA IKUSTEKO 
             exit;
         } else {
             $error = "Errorea kurtsoa gehitzerakoan.";
@@ -45,8 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="assets/css/Kgehitu.css">
 </head>
 <body>
+    <!-- KURTSOA GEHITZEKO FORMULARIOA -->
     <div class="form-container">
         <h2>Kurtsoa gehitu</h2>
+        <!-- ERROREAK IKUSTEKO DIV-A-->
         <?php if ($error): ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
