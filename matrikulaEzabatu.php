@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     //QUERY-A EXEKUTATU
     if ($stmt->execute()) {
-        header("Location: dashboard.php?message=Usuario eliminado del curso con éxito.");
+        header("Location: dashboard.php");
     } else {
         //ERROREA BADAGO DASHBOARDERA BIDALE ERRORE MEZUAKIN
         header("Location: dashboard.php?message=Error al eliminar usuario del curso.");
