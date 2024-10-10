@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // PASAHITZA HASHEATU
             $hashed_pasahitza = password_hash($pasahitza,PASSWORD_DEFAULT);
-            
+            $hashhash = password_hash($hashed_pasahitza, PASSWORD_DEFAULT);
             // USUARIO BERRIEREN DATUAK USUARIOAN SARTU SETERREKIN
             $usuario->setIzena($izena);
             $usuario->setAbizena($abizena);
